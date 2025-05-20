@@ -1,0 +1,39 @@
+[package]
+name = "moving_averages"
+version = "0.1.0"
+edition = "2021"
+authors = ["0ldm0s <oldmos@gmail.com>"]
+description = "Production-grade moving average algorithms implementation"
+license = "WTFPL"
+repository = "https://github.com/0ldm0s/moving_averages"
+documentation = "https://docs.rs/moving_averages"
+
+[features]
+default = ["std"]
+std = []
+serde = ["dep:serde"]
+
+[dependencies]
+num-traits = "0.2"
+serde = { version = "1.0", optional = true, features = ["derive"] }
+
+[dev-dependencies]
+criterion = "0.5"
+float-cmp = "0.9"
+
+[[bench]]
+name = "benchmark"
+harness = false
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[profile.test]
+panic = "abort"
+
+[profile.bench]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"
