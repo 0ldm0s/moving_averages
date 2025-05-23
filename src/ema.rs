@@ -35,7 +35,7 @@ impl<T: Float> Ema<T> {
     /// 添加新值并返回当前EMA
     pub fn next(&mut self, value: T) -> T {
         self.current = Some(match self.current {
-            Some(prev) => value * self.alpha + prev * (T::one() - self.alpha),
+            Some(prev) => prev + (value - prev) * self.alpha, // 优化计算顺序
             None => value,
         });
         self.current.unwrap()
@@ -44,6 +44,11 @@ impl<T: Float> Ema<T> {
     /// 重置计算器状态
     pub fn reset(&mut self) {
         self.current = None;
+    }
+
+    /// 获取当前alpha值
+    pub fn alpha(&self) -> T {
+        self.alpha
     }
 }
 
