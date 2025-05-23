@@ -50,5 +50,9 @@ impl<T: Float> Ema<T> {
     pub fn alpha(&self) -> T {
         self.alpha
     }
+
+    pub fn set_alpha(&mut self, alpha: T) {
+        self.alpha = alpha;
+    }
 }
 
